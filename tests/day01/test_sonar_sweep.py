@@ -1,4 +1,4 @@
-from day01.sonar_sweep import count_increase, count_increase_sliding_windows
+from aoc.day01.sonar_sweep import count_increase, count_increase_sliding_windows
 
 
 class TestDay01:
