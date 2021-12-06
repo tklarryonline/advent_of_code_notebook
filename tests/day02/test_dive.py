@@ -1,4 +1,4 @@
-from aoc.day02.dive import dive_deeper
+from aoc.day02.dive import dive_and_aim, simply_dive
 
 
 class TestDay02:
@@ -12,4 +12,7 @@ class TestDay02:
     ]
 
     def test_part01_sample_inputs(self):
-        assert dive_deeper(planned_course=self.inputs) == 150
+        assert simply_dive(steps=self.inputs) == 150
+
+    def test_part02_sample_inputs(self):
+        assert dive_and_aim(steps=self.inputs) == 900

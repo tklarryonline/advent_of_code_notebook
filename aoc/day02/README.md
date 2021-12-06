@@ -6,9 +6,12 @@ Now, you need to figure out how to pilot this thing.
 
 It seems like the submarine can take a series of commands like forward 1, down 2, or up 3:
 
-forward X increases the horizontal position by X units. down X increases the depth by X units. up X decreases the depth
-by X units. Note that since you're on a submarine, down and up affect your depth, and so they have the opposite result
-of what you might expect.
+- forward X increases the horizontal position by X units.
+- down X increases the depth by X units.
+- up X decreases the depth by X units.
+
+Note that since you're on a submarine, down and up affect your depth, and so they have the opposite result of what you
+might expect.
 
 The submarine seems to already have a planned course (your puzzle input). You should probably figure out where it's
 going. For example:
@@ -49,7 +52,7 @@ commands also mean something entirely different than you first thought:
 - up X decreases your aim by X units.
 - forward X does two things:
     - It increases your horizontal position by X units.
-    - t increases your depth by your aim multiplied by X.
+    - It increases your depth by your aim multiplied by X.
 
 Again note that since you're on a submarine, down and up do the opposite of what you might expect: "down" means aiming
 in the positive direction.

@@ -1,6 +1,6 @@
 import os
 
-from aoc.day02.dive import dive_deeper
+from aoc.day02.dive import dive_and_aim, simply_dive
 
 
 def run():
@@ -9,5 +9,6 @@ def run():
 
     print(
         f"**What do you get if you multiply your final horizontal position by your final depth?**\n"
-        f"Part 01: {dive_deeper(inputs)}\n"
+        f"Part 01: {simply_dive(inputs)}\n"
+        f"Part 02: {dive_and_aim(inputs)}\n"
     )
