@@ -1,6 +1,6 @@
 import os
 
-from aoc.day03.binary_diagnostic import simple_power_consumption
+from aoc.day03.binary_diagnostic import life_support, power_consumption
 
 
 def run():
@@ -9,5 +9,7 @@ def run():
 
     print(
         f"**What is the power consumption of the submarine?**\n"
-        f"{simple_power_consumption(numbers=inputs)}"
+        f"{power_consumption(numbers=inputs)}\n"
+        f"**What is the life support rating of the submarine?**\n"
+        f"{life_support(numbers=inputs)}\n"
     )
