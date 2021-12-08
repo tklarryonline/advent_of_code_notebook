@@ -1,6 +1,6 @@
 import os
 
-from aoc.day07.crab_submarines import align_submarines
+from aoc.day07.crab_submarines import align_submarines, align_submarines_part2
 
 
 def run():
@@ -10,5 +10,5 @@ def run():
     print(
         f"**How much fuel must they spend to align to that position?**\n"
         f"Part 1: {align_submarines(inputs[0])}\n"
-        f"Part 2: \n"
+        f"Part 2: {align_submarines_part2(inputs[0])}\n"
     )
