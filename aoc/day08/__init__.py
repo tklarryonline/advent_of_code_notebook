@@ -10,4 +10,5 @@ def run():
     print(
         f"**In the output values, how many times do digits 1, 4, 7, or 8 appear?**\n"
         f"Part 1: {part01(inputs)}\n"
+        f"**What do you get if you add up all of the output values?**\n"
     )

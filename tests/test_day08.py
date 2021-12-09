@@ -1,4 +1,4 @@
-from aoc.day08.seven_segment_search import part01
+from aoc.day08.seven_segment_search import decode_signal, decode_signals, map_signal_segments, part01, part02
 
 
 class TestDay08:
@@ -17,3 +17,60 @@ class TestDay08:
 
     def test_part01(self):
         assert part01(inputs=self.inputs) == 26
+
+    def test_map_entry_segments(self):
+        signals = [
+            'acedgfb', 'cdfbe', 'gcdfa', 'fbcad', 'dab', 'cefabd', 'cdfgeb', 'eafb', 'cagedb', 'ab',
+            'cdfeb', 'fcadb', 'cdfeb', 'cdbaf'
+        ]
+        expected = {
+            'd': 'a',
+            'e': 'b',
+            'a': 'c',
+            'f': 'd',
+            'g': 'e',
+            'b': 'f',
+            'c': 'g'
+        }
+
+        assert map_signal_segments(signals) == expected
+
+    def test_decode_signal(self):
+        signals_map = {
+            'd': 'a',
+            'e': 'b',
+            'a': 'c',
+            'f': 'd',
+            'g': 'e',
+            'b': 'f',
+            'c': 'g'
+        }
+
+        cases = [
+            ('cdfeb', 5),
+            ('fcadb', 3),
+            ('cdfeb', 5),
+            ('cdbaf', 3),
+        ]
+
+        for case, expected in cases:
+            assert decode_signal(case, signals_map=signals_map)
+
+    def test_decode_signals(self):
+        signals_map = {
+            'd': 'a',
+            'e': 'b',
+            'a': 'c',
+            'f': 'd',
+            'g': 'e',
+            'b': 'f',
+            'c': 'g'
+        }
+
+        assert decode_signals(
+            signals=['cdfeb', 'fcadb', 'cdfeb', 'cdbaf'],
+            signals_map=signals_map
+        ) == 5353
+
+    def test_part02(self):
+        assert part02(inputs=self.inputs) == 61229
