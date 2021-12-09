@@ -1,4 +1,4 @@
-from aoc.day09.smoke_basin import part01_sum_risk
+from aoc.day09.smoke_basin import travel_inputs
 
 
 class TestDay09:
@@ -9,4 +9,9 @@ class TestDay09:
 9899965678"""
 
     def test_part01(self):
-        assert part01_sum_risk(self.input_value) == 15
+        risk, _ = travel_inputs(self.input_value)
+        assert risk == 15
+
+    def test_part02(self):
+        _, basins_product = travel_inputs(self.input_value)
+        assert basins_product == 1134
