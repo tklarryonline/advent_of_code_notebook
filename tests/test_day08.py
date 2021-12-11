@@ -1,6 +1,9 @@
+import pytest
+
 from aoc.day08.seven_segment_search import decode_signal, decode_signals, map_signal_segments, part01, part02
 
 
+@pytest.mark.skip()
 class TestDay08:
     inputs = [
         "be cfbegad cbdgef fgaecd cgeb fdcge agebfd fecdb fabcd edb | fdgacbe cefdb cefbgd gcbe",
