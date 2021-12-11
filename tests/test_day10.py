@@ -1,6 +1,6 @@
 import pytest
 
-from aoc.day10.syntax_scoring import IncorrectCloseError, find_first_incorrect_close, fix_braces
+from aoc.day10.syntax_scoring import IncorrectCloseError, fill_incomplete_braces, find_first_incorrect_close, fix_braces
 
 
 class TestDay10:
@@ -21,6 +21,17 @@ class TestDay10:
         with pytest.raises(IncorrectCloseError) as ice_info:
             find_first_incorrect_close(line='{([(<{}[<>[]}>{[]{[(<()>')
         assert ice_info.value.brace == '}'
+
+    def test_fill_incomplete_braces(self):
+        cases = [
+            (list('[({([[{{'), 288957),
+            (list('({[<{('), 5566),
+            (list('((((<{<{{'), 1480781),
+            (list('<{[{[{{[['), 995444),
+            (list('<{(['), 294),
+        ]
+        for inputs, expected in cases:
+            assert fill_incomplete_braces(open_braces=inputs) == expected
 
     def test_part01_inputs(self):
         illegal_scores, _ = fix_braces(inputs=self.inputs)

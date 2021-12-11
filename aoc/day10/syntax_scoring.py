@@ -10,24 +10,30 @@ class IncorrectCloseError(Exception):
 class BracesPair:
     open: str
     close: str
-    points: int
+    error_score: int
+    complete_score: int
 
-    def __init__(self, pair: str, points: int = 0):
+    def __init__(self, pair: str, error_score: int = 0, complete_score: int = 0):
         assert len(pair) == 2
         self.open, self.close = pair
-        self.points = points
+        self.error_score = error_score
+        self.complete_score = complete_score
 
 
 PAIRS = [
-    BracesPair(pair='()', points=3),
-    BracesPair(pair='[]', points=57),
-    BracesPair(pair='{}', points=1197),
-    BracesPair(pair='<>', points=25137),
+    BracesPair(pair='()', error_score=3, complete_score=1),
+    BracesPair(pair='[]', error_score=57, complete_score=2),
+    BracesPair(pair='{}', error_score=1197, complete_score=3),
+    BracesPair(pair='<>', error_score=25137, complete_score=4),
 ]
 
 OPEN_BRACES = [pair.open for pair in PAIRS]
 CLOSE_BRACES = [pair.close for pair in PAIRS]
 OPEN_TO_CLOSE_BRACES = dict(zip(OPEN_BRACES, CLOSE_BRACES))
+COMPLETE_SCORES = {
+    pair.open: pair.complete_score
+    for pair in PAIRS
+}
 
 
 def find_first_incorrect_close(line: str) -> list[str]:
@@ -43,10 +49,17 @@ def find_first_incorrect_close(line: str) -> list[str]:
     return queue
 
 
+def fill_incomplete_braces(open_braces: list[str]) -> int:
+    score = 0
+    for open_brace in reversed(open_braces):
+        score = (score * 5) + COMPLETE_SCORES[open_brace]
+    return score
+
+
 def fix_braces(inputs: list[str]) -> tuple[int, int]:
     illegal_close_braces = defaultdict(int)
 
-    incomplete_lines = []
+    complete_scores = []
     for line in inputs:
         try:
             incomplete_braces = find_first_incorrect_close(line)
@@ -54,11 +67,13 @@ def fix_braces(inputs: list[str]) -> tuple[int, int]:
             illegal_close_braces[ice.brace] += 1
             continue
 
-        incomplete_lines.append(line)
+        complete_scores.append(fill_incomplete_braces(open_braces=incomplete_braces))
 
     illegal_scores = sum(
-        pair.points * illegal_close_braces[pair.close]
+        pair.error_score * illegal_close_braces[pair.close]
         for pair in PAIRS
     )
 
-    return illegal_scores, 0
+    middle_scores = sorted(complete_scores)[len(complete_scores) // 2]
+
+    return illegal_scores, middle_scores
