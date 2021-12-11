@@ -1,7 +1,13 @@
 from collections import defaultdict
+from dataclasses import dataclass
 
 
-class BracketPair:
+@dataclass
+class IncorrectCloseError(Exception):
+    brace: str
+
+
+class BracesPair:
     open: str
     close: str
     points: int
@@ -13,38 +19,46 @@ class BracketPair:
 
 
 PAIRS = [
-    BracketPair(pair='()', points=3),
-    BracketPair(pair='[]', points=57),
-    BracketPair(pair='{}', points=1197),
-    BracketPair(pair='<>', points=25137),
+    BracesPair(pair='()', points=3),
+    BracesPair(pair='[]', points=57),
+    BracesPair(pair='{}', points=1197),
+    BracesPair(pair='<>', points=25137),
 ]
 
-OPEN_BRACKETS = [pair.open for pair in PAIRS]
-CLOSE_BRACKETS = [pair.close for pair in PAIRS]
-MAPPED_BRACKETS = dict(zip(OPEN_BRACKETS, CLOSE_BRACKETS))
+OPEN_BRACES = [pair.open for pair in PAIRS]
+CLOSE_BRACES = [pair.close for pair in PAIRS]
+OPEN_TO_CLOSE_BRACES = dict(zip(OPEN_BRACES, CLOSE_BRACES))
 
 
-def find_first_incorrect_close(line: str) -> str:
+def find_first_incorrect_close(line: str) -> list[str]:
     queue = []
 
-    for bracket in line:
-        if bracket in OPEN_BRACKETS:
-            queue.append(bracket)
-        elif bracket in CLOSE_BRACKETS:
-            if not queue or bracket != MAPPED_BRACKETS[queue.pop()]:
-                return bracket
+    for brace in line:
+        if brace in OPEN_BRACES:
+            queue.append(brace)
+        elif brace in CLOSE_BRACES:
+            if not queue or brace != OPEN_TO_CLOSE_BRACES[queue.pop()]:
+                raise IncorrectCloseError(brace)
+
+    return queue
 
 
-def fix_brackets(inputs: list[str]) -> int:
-    illegal_close_brackets = defaultdict(int)
+def fix_braces(inputs: list[str]) -> tuple[int, int]:
+    illegal_close_braces = defaultdict(int)
 
+    incomplete_lines = []
     for line in inputs:
-        invalid_close = find_first_incorrect_close(line)
+        try:
+            incomplete_braces = find_first_incorrect_close(line)
+        except IncorrectCloseError as ice:
+            illegal_close_braces[ice.brace] += 1
+            continue
 
-        if invalid_close:
-            illegal_close_brackets[invalid_close] += 1
+        incomplete_lines.append(line)
 
-    return sum(
-        pair.points * illegal_close_brackets[pair.close]
+    illegal_scores = sum(
+        pair.points * illegal_close_braces[pair.close]
         for pair in PAIRS
     )
+
+    return illegal_scores, 0
