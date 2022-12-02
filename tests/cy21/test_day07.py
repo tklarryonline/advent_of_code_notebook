@@ -1,4 +1,4 @@
-from aoc.day07.crab_submarines import align_submarines, align_submarines_part2, calc_fuel
+from aoc.cy21.day07 import align_submarines, align_submarines_part2, calc_fuel
 
 
 class TestDay07:

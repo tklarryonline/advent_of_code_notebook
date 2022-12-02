@@ -1,6 +1,6 @@
 import os
 
-from aoc.day09.smoke_basin import travel_inputs
+from aoc.cy21.day09.smoke_basin import travel_inputs
 
 
 def run():

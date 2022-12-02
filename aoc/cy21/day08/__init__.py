@@ -1,6 +1,6 @@
 import os
 
-from aoc.day08.seven_segment_search import part01
+from aoc.cy21.day08.seven_segment_search import part01
 
 
 def run():

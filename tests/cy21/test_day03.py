@@ -1,4 +1,4 @@
-from aoc.day03.binary_diagnostic import (
+from aoc.cy21.day03.binary_diagnostic import (
     binary_flip,
     count_most_common_bits,
     life_support,

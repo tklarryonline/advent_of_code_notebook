@@ -1,6 +1,6 @@
 import os
 
-from aoc.day07.crab_submarines import align_submarines, align_submarines_part2
+from aoc.cy21.day07.crab_submarines import align_submarines, align_submarines_part2
 
 
 def run():

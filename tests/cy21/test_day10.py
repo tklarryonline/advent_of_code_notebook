@@ -1,6 +1,6 @@
 import pytest
 
-from aoc.day10.syntax_scoring import IncorrectCloseError, fill_incomplete_braces, find_first_incorrect_close, fix_braces
+from aoc.cy21.day10.syntax_scoring import IncorrectCloseError, fill_incomplete_braces, find_first_incorrect_close, fix_braces
 
 
 class TestDay10:

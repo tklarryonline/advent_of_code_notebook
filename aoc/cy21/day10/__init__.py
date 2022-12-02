@@ -1,6 +1,6 @@
 import os
 
-from aoc.day10.syntax_scoring import fix_braces
+from aoc.cy21.day10.syntax_scoring import fix_braces
 
 
 def run():

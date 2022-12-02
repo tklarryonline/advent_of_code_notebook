@@ -1,4 +1,4 @@
-from aoc.day06.lanternfish import part01_count_fishes
+from aoc.cy21.day06.lanternfish import part01_count_fishes
 
 
 class TestDay06:

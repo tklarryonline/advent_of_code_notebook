@@ -1,6 +1,6 @@
 import os
 
-from aoc.day03.binary_diagnostic import life_support, power_consumption
+from aoc.cy21.day03.binary_diagnostic import life_support, power_consumption
 
 
 def run():

@@ -1,4 +1,4 @@
-from aoc.day02.dive import dive_and_aim, simply_dive
+from aoc.cy21.day02 import dive_and_aim, simply_dive
 
 
 class TestDay02:
